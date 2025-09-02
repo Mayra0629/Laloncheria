@@ -1,511 +1,205 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Menú de Lonches • LALO'NCHERIA</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg-color: #0f172a;
-            --card-color: #1e293b;
-            --primary-color: #f59e0b;
-            --secondary-color: #10b981;
-            --text-light: #f8fafc;
-            --text-muted: #9ca3af;
-            --border-color: #475569;
-            --gradient: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            font-family: 'Roboto', sans-serif;
-            background: radial-gradient(circle at top left, var(--primary-color), var(--bg-color) 70%);
-            color: var(--text-light);
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
-
-        .menu-container {
-            width: 100%;
-            max-width: 500px;
-            background: var(--card-color);
-            border-radius: 28px;
-            overflow: hidden;
-            box-shadow: 0 25px 40px rgba(0,0,0,.6);
-            transition: transform 0.4s ease;
-        }
-
-        .menu-container:hover {
-            transform: scale(1.02);
-        }
-
-        .hero {
-            background: var(--gradient);
-            padding: 25px 20px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            position: relative;
-        }
-
-        .hero-logo img {
-            width: 80px;
-            height: auto;
-            border-radius: 10px;
-            background: #fff;
-            padding: 5px;
-            box-shadow: 0 3px 6px rgba(0,0,0,0.2);
-        }
-
-        .hero-text {
-            text-align: left;
-            flex-grow: 1;
-        }
-
-        .hero h1 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 2.5rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            text-shadow: 2px 2px 5px rgba(0,0,0,0.4);
-            color: white;
-            margin: 0;
-        }
-    
-        
-        .hero h4 {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            margin: 5px 0 0 0;
-            font-weight: 400;
-        }
-
-        .grid {
-            padding: 20px;
-            display: grid;
-            gap: 20px;
-        }
-
-        .section {
-            background: rgba(255,255,255,.05);
-            border: 1px solid var(--border-color);
-            border-radius: 20px;
-            overflow: hidden;
-        }
-
-        .section-header {
-            padding: 14px 18px;
-            font-weight: 700;
-            font-size: 16px;
-            background: rgba(255,255,255,.1);
-            color: var(--primary-color);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            transition: transform 0.3s ease, background 0.3s ease;
-            cursor: pointer;
-        }
-        
-        .section-header:hover {
-            transform: scale(1.02);
-            background: rgba(255,255,255,.2);
-        }
-
-        .section-header img {
-            width: 22px;
-        }
-
-        .items {
-            padding: 14px 18px;
-            display: grid;
-            gap: 12px;
-        }
-
-        .item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px;
-            border-radius: 12px;
-            background: rgba(0,0,0,.2);
-            transition: background .2s, transform .2s;
-            cursor: pointer;
-        }
-
-        .item:hover {
-            background: rgba(255,255,255,.15);
-            transform: translateX(5px);
-        }
-
-        .item-info h4 {
-            font-size: 1.1rem;
-            color: var(--text-light);
-            margin-bottom: 5px;
-        }
-
-        .item-info p {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-        }
-
-        .price {
-            font-weight: 700;
-            font-size: 1.2rem;
-            color: var(--text-light);
-            background: var(--primary-color);
-            padding: 8px 15px;
-            border-radius: 50px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-            transition: transform 0.3s ease, color 0.3s ease, background 0.3s ease;
-        }
-
-        .item:hover .price {
-            transform: translateY(-3px);
-            color: var(--card-color);
-            background: var(--secondary-color);
-        }
-
-        .footer {
-            text-align: center;
-            padding: 20px;
-            border-top: 2px solid var(--border-color);
-        }
-
-        .cta-button {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 15px 30px;
-            background: var(--primary-color);
-            color: var(--card-color);
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 700;
-            text-transform: uppercase;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-            transition: transform 0.3s ease, background 0.3s ease;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-3px);
-            background: var(--secondary-color);
-        }
-
-        .cta-button img {
-            width: 24px;
-        }
-
-        /* ESTILOS DEL CARRITO AGREGADOS */
-        #cart-section {
-            display: none; /* Inicia oculto */
-            padding: 20px;
-            background: rgba(255,255,255,.05);
-            border-top: 1px solid var(--border-color);
-        }
-
-        #cart-section h2 {
-            font-family: 'Cormorant Garamond', serif;
-            color: var(--secondary-color);
-            text-align: center;
-            margin-bottom: 15px;
-        }
-        
-        #cart-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        
-        .cart-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(0,0,0,.2);
-            padding: 10px;
-            border-radius: 10px;
-            margin-bottom: 8px;
-        }
-        
-        .cart-item-name {
-            font-weight: 700;
-            flex-grow: 1;
-            padding-right: 10px;
-        }
-        
-        .cart-item-controls {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .cart-item-controls button {
-            background: var(--primary-color);
-            border: none;
-            color: var(--card-color);
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            font-weight: 700;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-        
-        .cart-item-controls button:hover {
-            background: var(--secondary-color);
-        }
-        
-        #cart-total {
-            text-align: right;
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-top: 15px;
-            color: var(--text-light);
-        }
-        /* --- Ajustes responsive para móviles --- */
-@media (max-width: 480px) {
-    .hero h1 {
-        font-size: clamp(1.8rem, 7vw, 2.5rem); /* título se ajusta al ancho */
-    }
-
-    .hero h3 {
-        font-size: clamp(0.8rem, 3.5vw, 1rem); /* subtítulo más legible */
-    }
-
-    .item-info h4 {
-        font-size: clamp(1rem, 4vw, 1.2rem); /* nombre del lonche más grande */
-    }
-
-    .item-info p {
-        font-size: clamp(0.9rem, 3.5vw, 1rem); /* descripción más visible */
-    }
-
-    .price {
-        font-size: clamp(1rem, 4vw, 1.2rem);
-        padding: 6px 12px;
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Menú de Lonches • LALO'NCHERIA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* --- Tus estilos existentes --- */
+:root {
+    --bg-color: #0f172a;
+    --card-color: #1e293b;
+    --primary-color: #f59e0b;
+    --secondary-color: #10b981;
+    --text-light: #f8fafc;
+    --text-muted: #9ca3af;
+    --border-color: #475569;
+    --gradient: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
 }
-
-    </style>
+* { box-sizing: border-box; margin:0; padding:0;}
+body {
+    font-family: 'Roboto', sans-serif;
+    background: radial-gradient(circle at top left, var(--primary-color), var(--bg-color) 70%);
+    color: var(--text-light);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+.menu-container { width:100%; max-width:500px; background:var(--card-color); border-radius:28px; overflow:hidden; box-shadow:0 25px 40px rgba(0,0,0,.6);}
+.hero { background: var(--gradient); padding:25px 20px; display:flex; align-items:center; gap:15px;}
+.hero-logo img { width:80px; border-radius:10px; background:#fff; padding:5px;}
+.hero-text h1 { font-family:'Cormorant Garamond', serif; font-size:2.5rem; text-transform:uppercase; color:white;}
+.hero-text h3 { font-size:0.9rem; color: var(--text-muted); margin-top:5px; font-weight:400;}
+.grid { padding:20px; display:grid; gap:20px;}
+.section { background: rgba(255,255,255,.05); border:1px solid var(--border-color); border-radius:20px;}
+.section-header { padding:14px 18px; font-weight:700; font-size:16px; background:rgba(255,255,255,.1); color: var(--primary-color);}
+.items { padding:14px 18px; display:grid; gap:12px;}
+.item { display:flex; justify-content:space-between; align-items:center; padding:10px; border-radius:12px; background:rgba(0,0,0,.2); cursor:pointer;}
+.item:hover { background: rgba(255,255,255,.15);}
+.item-info h4 { font-size:1.1rem; color:var(--text-light);}
+.price { font-weight:700; font-size:1.2rem; color:var(--text-light); background: var(--primary-color); padding:8px 15px; border-radius:50px;}
+.footer { text-align:center; padding:20px; border-top:2px solid var(--border-color);}
+.cta-button { display:inline-flex; align-items:center; gap:10px; padding:15px 30px; background:var(--primary-color); color:var(--card-color); border-radius:50px; font-weight:700;}
+#cart-section { display:none; padding:20px; background: rgba(255,255,255,.05); border-top:1px solid var(--border-color);}
+#cart-list { list-style:none; padding:0;}
+.cart-item { display:flex; justify-content:space-between; align-items:center; background:rgba(0,0,0,.2); padding:10px; border-radius:10px; margin-bottom:8px;}
+.cart-item-controls button { background:var(--primary-color); border:none; color:var(--card-color); width:24px; height:24px; border-radius:50%; cursor:pointer;}
+.cart-item-controls button:hover { background:var(--secondary-color);}
+#cart-total { text-align:right; font-size:1.5rem; font-weight:700; color:var(--text-light);}
+</style>
 </head>
 <body>
-    <div class="menu-container">
-        <header class="hero">
-            <div class="hero-logo">
-                <img src="logo2.png" alt="Logo de LALO'NCHERIA">
+<div class="menu-container">
+    <header class="hero">
+        <div class="hero-logo"><img src="logo2.png" alt="Logo de LALO'NCHERIA"></div>
+        <div class="hero-text">
+            <h1>LALO'NCHERIA</h1>
+            <h3>Hechos con el corazón y al momento.<br> ¡Perfectos para tu día a día!</h3>
+        </div>
+    </header>
+
+    <main class="grid">
+        <section id="cart-section" class="section">
+            <h2>Tu Pedido</h2>
+            <ul id="cart-list"></ul>
+            <p id="cart-total">Total: $0</p>
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">Lonches</h2>
+            <div class="items">
+                <div class="item" data-price="45"><div class="item-info"><h4>Pierna</h4></div><span class="price">$45</span></div>
+                <div class="item" data-price="40"><div class="item-info"><h4>Clásico Chilaquil</h4></div><span class="price">$40</span></div>
+                <div class="item" data-price="35"><div class="item-info"><h4>Jamón</h4></div><span class="price">$35</span></div>
+                <div class="item" data-price="35"><div class="item-info"><h4>Lonche de Frijol</h4></div><span class="price">$35</span></div>
             </div>
-            <div class="hero-text">
-                <h1>LALO'NCHERIA</h1>
-                 <h3>Hechos con el corazón y al momento.<br> ¡Perfectos para tu día a día!</h3>
-            
+        </section>
+
+        <section class="section">
+            <h2 class="section-header">🌟 Lonche del Día</h2>
+            <div class="items">
+                <div class="item" data-price="45"><div class="item-info"><h4>Chicharrón</h4></div><span class="price">$45</span></div>
             </div>
-        </header>
+        </section>
 
-        <main class="grid">
-            <section id="cart-section" class="section">
-                <h2>Tu Pedido</h2>
-                <div id="cart-content">
-                    <ul id="cart-list">
-                        </ul>
-                    <p id="cart-total">Total: $0</p>
-                </div>
-            </section>
-            
-            <section class="section">
-                <h2 class="section-header">Lonches</h2>
-                <div class="items" id="lonches">
-                    <div class="item" data-price="45">
-                        <div class="item-info">
-                            <h4>Pierna</h4>
-                            <p>Pierna deshebrada, jitomate, crema, cebolla y chiles jalapeños.</p>
-                        </div>
-                        <span class="price" >$45</span>
-                    </div>
-                    <div class="item" data-price="40">
-                        <div class="item-info">
-                            <h4>Clásico Chilaquil</h4>
-                            <p>Salsa roja con queso fresco, crema y cebolla.</p>
-                        </div>
-                        <span class="price">$40</span>
-                    </div>
-                    <div class="item" data-price="35">
-                        <div class="item-info">
-                            <h4>Jamón</h4>
-                            <p>Jamón, crema, jitomate, cebolla y chiles Jalapeños.</p>
-                        </div>
-                        <span class="price">$35</span>
-                    </div>
-                    <div class="item" data-price="35">
-                        <div class="item-info">
-                            <h4>Lonche de Frijol</h4>
-                            <p>Frijoles refritos con queso fresco.</p>
-                        </div>
-                        <span class="price">$35</span>
-                    </div>
-                </div>
-            </section>
-            
-            <section class="section">
-                <div class="section-header">🌟 Lonche del Día </div>
-                <div class="items" id="lonche-del-dia">
-                    <div class="item" data-price="45">
-                        <div class="item-info">
-                            <h4>Chicharrón</h4>
-                            <p>Con frijol</p>
-                        </div>
-                        <span class="price">$45</span>
-                    </div>
-                </div>
-            </section>
-            
-            <section class="section">
-                <h2 class="section-header">Bebidas</h2>
-                <div class="items" id="para-la-sed">
-                    <div class="item" data-price="18">
-                        <div class="item-info">
-                            <h4>Refrescos PepsiCo</h4>
-                            <p>Sabores variados (Manzana, Pepsi, 7up, Mirinda).</p>
-                        </div>
-                        <span class="price">$18</span>
-                    </div>
-                </div>
-            </section>
-        </main>
+        <section class="section">
+            <h2 class="section-header">Bebidas</h2>
+            <div class="items">
+                <div class="item" data-price="18"><div class="item-info"><h4>Refrescos PepsiCo</h4></div><span class="price">$18</span></div>
+            </div>
+        </section>
+    </main>
 
-        <footer class="footer">
-            <button id="whatsapp-button" class="cta-button">
-                <img src="whats.png" alt="Icono de WhatsApp"> ¡Pide Aquí!
-            </button>
-        </footer>
-    </div>
+    <footer class="footer">
+        <button id="whatsapp-button" class="cta-button">
+            <img src="whats.png" alt="Icono de WhatsApp"> ¡Pide Aquí!
+        </button>
+    </footer>
+</div>
 
-    <script>
-        const cart = {};
-        const cart = {};
-        const displayNames = {
-        "Pierna": "Lonche de Pierna",
-        "Clásico Chilaquil": "Lonche de Chilaquil",
-        "Jamón": "Lonche de Jamón",
-        "Lonche de Frijol": "Lonche de Frijol",
-        "Chicharrón": "Lonche de Chicharrón",
-        "Refrescos PepsiCo": "Refresco"
-        };
+<script>
+const cart = {};
+const displayNames = {
+    "Pierna": "Lonche de Pierna",
+    "Clásico Chilaquil": "Lonche de Chilaquil",
+    "Jamón": "Lonche de Jamón",
+    "Lonche de Frijol": "Lonche de Frijol",
+    "Chicharrón": "Lonche de Chicharrón",
+    "Refrescos PepsiCo": "Refresco"
+};
 
-        const cartSection = document.getElementById('cart-section');
-        const cartList = document.getElementById('cart-list');
-        const cartTotal = document.getElementById('cart-total');
-        const whatsappButton = document.getElementById('whatsapp-button');
+const cartSection = document.getElementById('cart-section');
+const cartList = document.getElementById('cart-list');
+const cartTotal = document.getElementById('cart-total');
+const whatsappButton = document.getElementById('whatsapp-button');
 
-        // Selecciona todos los elementos de menú que se pueden agregar al carrito
-        const menuItems = document.querySelectorAll('.item');
+document.querySelectorAll('.item').forEach(item => {
+    item.addEventListener('click', () => {
+        const name = item.querySelector('h4').textContent;
+        const displayName = displayNames[name] || name;
+        const price = parseFloat(item.dataset.price);
 
-        menuItems.forEach(item => {
-            item.addEventListener('click', () => {
-                const name = item.querySelector('h4').textContent;
-                let displayName = displayNames[name] || name;
-                const price = parseFloat(item.dataset.price);
-                
-                if (cart[displayName]) {
-                     cart[displayName].quantity++;
-                    } else {
-                    cart[displayName] = { price: price, quantity: 1 };}
-
-                
-                updateCartUI();
-            });
-        });
-
-        function updateCartUI() {
-            cartList.innerHTML = ''; // Limpiar la lista del carrito
-            let total = 0;
-            let hasItems = false;
-            
-            for (const name in cart) {
-                if (cart[name].quantity > 0) {
-                    hasItems = true;
-                    const item = cart[name];
-                    const li = document.createElement('li');
-                    li.classList.add('cart-item');
-                    li.innerHTML = `
-                        <span class="cart-item-name">${name}</span>
-                        <div class="cart-item-controls">
-                            <button class="decrement-btn" data-name="${name}">-</button>
-                            <span>${item.quantity}</span>
-                            <button class="increment-btn" data-name="${name}">+</button>
-                        </div>
-                        <span>$${(item.quantity * item.price).toFixed(2)}</span>
-                    `;
-                    cartList.appendChild(li);
-                    total += item.quantity * item.price;
-                }
-            }
-            
-            cartTotal.textContent = `Total: $${total.toFixed(2)}`;
-            
-            if (hasItems) {
-                cartSection.style.display = 'block';
-            } else {
-                cartSection.style.display = 'none';
-            }
-
-            // Añadir event listeners a los nuevos botones
-            document.querySelectorAll('.decrement-btn').forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    const name = e.target.dataset.name;
-                    if (cart[name] && cart[name].quantity > 0) {
-                        cart[name].quantity--;
-                        if (cart[name].quantity === 0) {
-                            delete cart[name];
-                        }
-                    }
-                    updateCartUI();
-                });
-            });
-
-            document.querySelectorAll('.increment-btn').forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    const name = e.target.dataset.name;
-                    if (cart[name]) {
-                        cart[name].quantity++;
-                    }
-                    updateCartUI();
-                });
-            });
+        if(cart[displayName]) {
+            cart[displayName].quantity++;
+        } else {
+            cart[displayName] = { price: price, quantity: 1 };
         }
-        
-        whatsappButton.addEventListener('click', () => {
-            const phoneNumber = '523326392729';
-            let message = '¡Hola! Me gustaría hacer el siguiente pedido:\n\n';
-            let total = 0;
-            
-            for (const name in cart) {
-                const item = cart[name];
-                if (item.quantity > 0) {
-                    message += `* ${item.quantity} x ${name} ($${item.price} c/u)\n`;
-                    total += item.quantity * item.price;
-                }
+        updateCartUI();
+    });
+});
+
+function updateCartUI() {
+    cartList.innerHTML = '';
+    let total = 0;
+    let hasItems = false;
+
+    for(const name in cart){
+        if(cart[name].quantity>0){
+            hasItems = true;
+            const item = cart[name];
+            const li = document.createElement('li');
+            li.classList.add('cart-item');
+            li.innerHTML = `
+                <span class="cart-item-name">${name}</span>
+                <div class="cart-item-controls">
+                    <button class="decrement-btn" data-name="${name}">-</button>
+                    <span>${item.quantity}</span>
+                    <button class="increment-btn" data-name="${name}">+</button>
+                </div>
+                <span>$${(item.quantity*item.price).toFixed(2)}</span>
+            `;
+            cartList.appendChild(li);
+            total += item.quantity*item.price;
+        }
+    }
+
+    cartTotal.textContent = `Total: $${total.toFixed(2)}`;
+    cartSection.style.display = hasItems ? 'block' : 'none';
+
+    document.querySelectorAll('.decrement-btn').forEach(btn=>{
+        btn.onclick = e=>{
+            const name = e.target.dataset.name;
+            if(cart[name].quantity>0){
+                cart[name].quantity--;
+                if(cart[name].quantity===0) delete cart[name];
             }
-            
-            if (total > 0) {
-                message += `\n*TOTAL: $${total.toFixed(2)}*`;
-                
-                const encodedMessage = encodeURIComponent(message);
-                const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
-                window.open(whatsappUrl, '_blank');
-            } else {
-                alert('Tu carrito está vacío. ¡Selecciona algunos lonches primero!');
-            }
-        });
-    </script>
+            updateCartUI();
+        }
+    });
+
+    document.querySelectorAll('.increment-btn').forEach(btn=>{
+        btn.onclick = e=>{
+            const name = e.target.dataset.name;
+            cart[name].quantity++;
+            updateCartUI();
+        }
+    });
+}
+
+whatsappButton.addEventListener('click', ()=>{
+    const phoneNumber = '523326392729';
+    let message = '¡Hola! Me gustaría hacer el siguiente pedido:\n\n';
+    let total = 0;
+    for(const name in cart){
+        const item = cart[name];
+        if(item.quantity>0){
+            message += `* ${item.quantity} x ${name} ($${item.price} c/u)\n`;
+            total += item.quantity*item.price;
+        }
+    }
+    if(total>0){
+        message += `\n*TOTAL: $${total.toFixed(2)}*`;
+        const encoded = encodeURIComponent(message);
+        window.open(`https://wa.me/${phoneNumber}?text=${encoded}`,'_blank');
+    } else {
+        alert('Tu carrito está vacío. ¡Selecciona algunos lonches primero!');
+    }
+});
+</script>
 </body>
 </html>
