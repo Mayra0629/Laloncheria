@@ -82,11 +82,7 @@
             color: white;
             margin: 0;
         }
-        @media (max-width: 480px) {
-        .hero h1 {
-        font-size: 2.8rem;
-        }
-    }
+    
         
         .hero h4 {
             font-size: 0.9rem;
@@ -276,6 +272,30 @@
             margin-top: 15px;
             color: var(--text-light);
         }
+        /* --- Ajustes responsive para móviles --- */
+@media (max-width: 480px) {
+    .hero h1 {
+        font-size: clamp(1.8rem, 7vw, 2.5rem); /* título se ajusta al ancho */
+    }
+
+    .hero h3 {
+        font-size: clamp(0.8rem, 3.5vw, 1rem); /* subtítulo más legible */
+    }
+
+    .item-info h4 {
+        font-size: clamp(1rem, 4vw, 1.2rem); /* nombre del lonche más grande */
+    }
+
+    .item-info p {
+        font-size: clamp(0.9rem, 3.5vw, 1rem); /* descripción más visible */
+    }
+
+    .price {
+        font-size: clamp(1rem, 4vw, 1.2rem);
+        padding: 6px 12px;
+    }
+}
+
     </style>
 </head>
 <body>
