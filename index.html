@@ -391,6 +391,16 @@
 
     <script>
         const cart = {};
+        const cart = {};
+        const displayNames = {
+        "Pierna": "Lonche de Pierna",
+        "Clásico Chilaquil": "Lonche de Chilaquil",
+        "Jamón": "Lonche de Jamón",
+        "Lonche de Frijol": "Lonche de Frijol",
+        "Chicharrón": "Lonche de Chicharrón",
+        "Refrescos PepsiCo": "Refresco"
+        };
+
         const cartSection = document.getElementById('cart-section');
         const cartList = document.getElementById('cart-list');
         const cartTotal = document.getElementById('cart-total');
@@ -402,13 +412,14 @@
         menuItems.forEach(item => {
             item.addEventListener('click', () => {
                 const name = item.querySelector('h4').textContent;
+                let displayName = displayNames[name] || name;
                 const price = parseFloat(item.dataset.price);
                 
-                if (cart[name]) {
-                    cart[name].quantity++;
-                } else {
-                    cart[name] = { price: price, quantity: 1 };
-                }
+                if (cart[displayName]) {
+                     cart[displayName].quantity++;
+                    } else {
+                    cart[displayName] = { price: price, quantity: 1 };}
+
                 
                 updateCartUI();
             });
